@@ -1,4 +1,4 @@
-# fastinference
+# fastinference v0.0.1
 Fast ML inference &amp; cross-platform Rust library
 
 # LICENSE
@@ -20,4 +20,9 @@ There will be support for embedded systems as well (which will not have a  memor
 Actual articulate documentation and marketing to come at a later date. 
 
 
+### Upcoming features
+   1) MNIST download & forward pass instructions
+   2) general instructions
+   3) porting arbitrary sklearn models to fastinference engine 
+   4) CI to properly test x86 and ARM builds
 
