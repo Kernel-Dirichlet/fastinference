@@ -1,0 +1,22 @@
+[package]
+name = "fast_inference"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = "*"
+ndarray = "*"
+rayon = "*"
+
+[profile.dev]
+lto = "thin"
+opt-level = 2
+debug = false
+strip = true
+
+[profile.release]
+lto = "fat"
+opt-level = 3
+debug = false
+strip = true
+
