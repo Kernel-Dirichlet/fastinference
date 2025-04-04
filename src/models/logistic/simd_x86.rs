@@ -20,8 +20,8 @@
 // The implementations below focus on single-core SIMD optimizations.
 // Multi-threading optimizations are handled separately in multicore.rs.
 
-use std::arch::x86_64::*;
 use crate::models::logistic::base::OptimizationStrategy;
+use std::arch::x86_64::*;
 
 // SSE optimized implementation using 128-bit registers
 #[cfg(target_arch = "x86_64")]
@@ -124,7 +124,7 @@ impl OptimizationStrategy for AVX {
         }
     }
 }
-// sigmoid will be replaced later with a polynomial approximation 
+// sigmoid will be replaced later with a polynomial approximation
 #[inline]
 fn sigmoid(x: f32) -> f32 {
     1.0 / (1.0 + (-x).exp())
