@@ -3,11 +3,11 @@
 // This file implements SIMD-optimized logistic regression using NEON instructions.
 // The optimizations focus on vectorized dot products and efficient sigmoid calculations.
 
-#[cfg(target_arch = "aarch64")]
-use std::arch::is_aarch64_feature_detected;
+use crate::models::logistic::base::OptimizationStrategy;
 #[cfg(target_arch = "aarch64")]
 use std::arch::aarch64::*;
-use crate::models::logistic::base::OptimizationStrategy;
+#[cfg(target_arch = "aarch64")]
+use std::arch::is_aarch64_feature_detected;
 
 // NEON optimized implementation using 128-bit registers
 pub struct NEON;
@@ -58,10 +58,12 @@ impl OptimizationStrategy for NEON {
 }
 
 fn scalar_forward(weights: &[f32], input: &[f32], bias: f32) -> f32 {
-    let sum = weights.iter()
+    let sum = weights
+        .iter()
         .zip(input.iter())
         .map(|(w, x)| w * x)
-        .sum::<f32>() + bias;
+        .sum::<f32>()
+        + bias;
     sigmoid(sum)
 }
 
@@ -69,4 +71,3 @@ fn scalar_forward(weights: &[f32], input: &[f32], bias: f32) -> f32 {
 fn sigmoid(x: f32) -> f32 {
     1.0 / (1.0 + (-x).exp())
 }
-

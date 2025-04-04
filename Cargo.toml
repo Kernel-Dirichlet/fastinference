@@ -1,0 +1,25 @@
+[package]
+name = "fast_inference"
+version = "0.1.0"
+edition = "2021"
+license = "AGPL-3"
+repository = "https://github.com/Kernel-Dirichlet/fastinference"
+
+[dependencies]
+anyhow = { version = "1.0", features = ["std"] }
+clap = { version = "4.5", features = ["derive", "help", "std", "usage"] }
+ndarray = "0.16"
+rayon = "1.10"
+
+[profile.dev]
+lto = "thin"
+opt-level = 2
+debug = false
+strip = true
+
+[profile.release]
+lto = "fat"
+opt-level = 3
+debug = false
+strip = true
+
